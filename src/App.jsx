@@ -1,0 +1,33 @@
+import React from 'react';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout.jsx';
+
+import Dashboard from './pages/Dashboard.jsx';
+import Catalog from './pages/Catalog.jsx';
+import Racks from './pages/Racks.jsx';
+import POSBilling from './pages/POSBilling.jsx';
+import SalesHistory from './pages/SalesHistory.jsx';
+import Procurement from './pages/Procurement.jsx';
+import Finance from './pages/Finance.jsx';
+import Settings from './pages/Settings.jsx';
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/racks" element={<Navigate to="/settings?tab=racks" replace />} />
+          <Route path="/pos" element={<POSBilling />} />
+          <Route path="/history" element={<SalesHistory />} />
+          <Route path="/vendors" element={<Procurement />} />
+          <Route path="/procurement" element={<Navigate to="/vendors" replace />} />
+          <Route path="/finance" element={<Finance />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Layout>
+    </HashRouter>
+  );
+}
